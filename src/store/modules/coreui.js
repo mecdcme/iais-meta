@@ -17,7 +17,17 @@ const mutations = {
   }
 };
 
+const getters = {
+  sidebarShow: state => {
+    return state.sidebarShow;
+  },
+  sidebarMinimize: state => {
+    return state.sidebarMinimize;
+  }
+};
+
 export default {
   state,
-  mutations
+  mutations,
+  getters
 };

@@ -4,9 +4,9 @@ export default [
     _children: [
       {
         _name: "CSidebarNavItem",
-        name: "Dashboard",
+        name: "Home",
         to: "/dashboard",
-        icon: "cil-speedometer",
+        icon: "cil-home",
         badge: {
           color: "primary",
           text: "NEW"

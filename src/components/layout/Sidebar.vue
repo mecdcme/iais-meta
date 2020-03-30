@@ -14,23 +14,22 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 import nav from "./_nav";
 
 export default {
   name: "Sidebar",
   nav,
   computed: {
-    show() {
-      return this.$store.state.coreui.sidebarShow;
-    },
-    minimize() {
-      return this.$store.state.coreui.sidebarMinimize;
-    }
+    ...mapGetters({
+      show: "sidebarShow",
+      minimize: "sidebarMinimize"
+    })
   }
 };
 </script>
 <style scoped>
-.brand{
-    font-size: 1.2em;
+.brand {
+  font-size: 1.2em;
 }
 </style>
