@@ -1,6 +1,8 @@
 module.exports = {
-  publicPath: "/iais/",
+  publicPath: "/iais",
   devServer: {
     host: "localhost"
-  }
+  },
+  assetsDir: "public",
+  outputDir: "dist/iais"
 };
