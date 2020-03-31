@@ -1,28 +1,3 @@
-import {
-  cibFacebook,
-  cibTwitter,
-  cibLinkedin,
-  cibFlickr,
-  cibTumblr,
-  cibXing,
-  cibGithub,
-  cibStackOverflow,
-  cibYoutube,
-  cibDribbble,
-  cibInstagram,
-  cibPinterest,
-  cibVk,
-  cibYahoo,
-  cibBehance,
-  cibReddit,
-  cibVimeo,
-  cibCcMastercard,
-  cibCcVisa,
-  cibStripe,
-  cibPaypal,
-  cibGooglePay,
-  cibCcAmex
-} from "@coreui/icons";
 import { cifUs, cifBr, cifIn, cifFr, cifEs, cifPl } from "@coreui/icons";
 import {
   cilArrowRight,
@@ -37,6 +12,7 @@ import {
   cilChevronBottom,
   cilChevronTop,
   cilCheckCircle,
+  cilCode,
   cilCommentSquare,
   cilCursor,
   cilDrop,
@@ -48,6 +24,7 @@ import {
   cilGrid,
   cilFile,
   cilJustifyCenter,
+  cilHome,
   cilLaptop,
   cilLayers,
   cilLightbulb,
@@ -66,9 +43,11 @@ import {
   cilSpeedometer,
   cilStar,
   cilTask,
+  cilTerminal,
   cilUser,
   cilUserFemale,
   cilUserFollow,
+  cilX,
   cilXCircle
 } from "@coreui/icons";
 
@@ -87,6 +66,7 @@ export const iconsSet = Object.assign(
     cilChevronBottom,
     cilChevronTop,
     cilCheckCircle,
+    cilCode,
     cilCommentSquare,
     cilCursor,
     cilDrop,
@@ -98,6 +78,7 @@ export const iconsSet = Object.assign(
     cilGrid,
     cilFile,
     cilJustifyCenter,
+    cilHome,
     cilLaptop,
     cilLayers,
     cilLightbulb,
@@ -116,9 +97,11 @@ export const iconsSet = Object.assign(
     cilSpeedometer,
     cilStar,
     cilTask,
+    cilTerminal,
     cilUser,
     cilUserFemale,
     cilUserFollow,
+    cilX,
     cilXCircle
   },
   {
@@ -128,30 +111,5 @@ export const iconsSet = Object.assign(
     cifFr,
     cifEs,
     cifPl
-  },
-  {
-    cibFacebook,
-    cibTwitter,
-    cibLinkedin,
-    cibFlickr,
-    cibTumblr,
-    cibXing,
-    cibGithub,
-    cibStackOverflow,
-    cibYoutube,
-    cibDribbble,
-    cibInstagram,
-    cibPinterest,
-    cibVk,
-    cibYahoo,
-    cibBehance,
-    cibReddit,
-    cibVimeo,
-    cibCcMastercard,
-    cibCcVisa,
-    cibStripe,
-    cibPaypal,
-    cibGooglePay,
-    cibCcAmex
   }
 );

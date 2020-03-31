@@ -1,5 +1,6 @@
 module.exports = {
-    devServer: {
-        host: "localhost"
-    }
+  publicPath: "/iais/",
+  devServer: {
+    host: "localhost"
+  }
 };

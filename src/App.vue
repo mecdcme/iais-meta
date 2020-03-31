@@ -1,14 +1,12 @@
 <template>
-  <div id="app">
+  <div id="app" class="c-app">
     <app-sidebar></app-sidebar>
     <CWrapper>
       <app-header />
       <div class="c-body">
         <main class="c-main">
           <CContainer fluid>
-            <transition name="fade">
-              <router-view></router-view>
-            </transition>
+            <router-view></router-view>
           </CContainer>
         </main>
         <app-footer />

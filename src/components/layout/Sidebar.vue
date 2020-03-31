@@ -6,7 +6,8 @@
     @update:show="value => $store.commit('set', ['sidebarShow', 'responsive'])"
   >
     <CSidebarBrand class="d-md-down-none" to="/">
-      <span class="brand">IAIS Meta</span>
+      <CIcon name="cil-terminal" size="lg"></CIcon
+      ><span class="brand"> IAIS Meta </span>
     </CSidebarBrand>
 
     <CRenderFunction flat :content-to-render="$options.nav" />
@@ -31,5 +32,6 @@ export default {
 <style scoped>
 .brand {
   font-size: 1.2em;
+  padding-left: 1rem;
 }
 </style>

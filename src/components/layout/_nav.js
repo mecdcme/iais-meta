@@ -5,7 +5,7 @@ export default [
       {
         _name: "CSidebarNavItem",
         name: "Home",
-        to: "/dashboard",
+        to: "/",
         icon: "cil-home",
         badge: {
           color: "primary",
@@ -19,19 +19,19 @@ export default [
       {
         _name: "CSidebarNavItem",
         name: "Referential",
-        to: "/metadata/referential",
+        to: "/referential",
         icon: "cil-layers"
       },
       {
         _name: "CSidebarNavItem",
         name: "Structural",
-        to: "/metadata/structural",
+        to: "/structural",
         icon: "cil-layers"
       },
       {
         _name: "CSidebarNavItem",
         name: "Process",
-        to: "/metadata/process",
+        to: "/process",
         icon: "cil-layers"
       }
     ]
