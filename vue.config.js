@@ -3,6 +3,5 @@ module.exports = {
   devServer: {
     host: "localhost"
   },
-  assetsDir: "public",
   outputDir: "dist/iais"
 };
