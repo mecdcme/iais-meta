@@ -52,13 +52,18 @@ export default {
   watch: {
     $route() {
       const show = this.$router.currentRoute.name != "Home";
-      console.log(show);
       this.show = show;
     }
   },
   methods: {
     goBack() {
-      this.$router.back(); //DEBUG
+      var pathArray = this.$router.currentRoute.path.split("/");
+      var parentPath = "";
+      for (let i = 0; i < pathArray.length - 1; i++) {
+        parentPath += pathArray[i] + "/";
+      }
+      console.log(parentPath);
+      this.$router.push(parentPath); //DEBUG
     }
   }
 };
