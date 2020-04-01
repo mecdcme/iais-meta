@@ -1,5 +1,6 @@
 {
   "projects": {
-    "default": "vue-server-demo"
+    "default": "vue-server-demo",
+    "iais": "iais-demo"
   }
 }

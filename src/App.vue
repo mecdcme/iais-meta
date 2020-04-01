@@ -6,7 +6,9 @@
       <div class="c-body">
         <main class="c-main">
           <CContainer fluid>
-            <router-view></router-view>
+            <transition name="fade" mode="out-in">
+              <router-view></router-view>
+            </transition>
           </CContainer>
         </main>
         <app-footer />
@@ -33,4 +35,14 @@ export default {
 <style lang="scss">
 // Import Main styles for this application
 @import "assets/scss/style";
+
+//Transition
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s;
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
 </style>

@@ -51,8 +51,7 @@ export default {
   },
   watch: {
     $route() {
-      const show = this.$router.currentRoute.name != "Home";
-      this.show = show;
+      this.show = this.$router.currentRoute.name != "Home";
     }
   },
   methods: {
@@ -62,30 +61,9 @@ export default {
       for (let i = 0; i < pathArray.length - 1; i++) {
         parentPath += pathArray[i] + "/";
       }
-      console.log(parentPath);
-      this.$router.push(parentPath); //DEBUG
+      //console.log(parentPath);
+      this.$router.push(parentPath);
     }
   }
 };
 </script>
-
-<style scoped>
-.c-header.c-header-fixed {
-  border: 0;
-  -webkit-box-shadow: 0 2px 2px 0 rgba(60, 75, 100, 0.14),
-    0 3px 1px -2px rgba(60, 75, 100, 0.12), 0 1px 5px 0 rgba(60, 75, 100, 0.2);
-  box-shadow: 0 2px 2px 0 rgba(60, 75, 100, 0.14),
-    0 3px 1px -2px rgba(60, 75, 100, 0.12), 0 1px 5px 0 rgba(60, 75, 100, 0.2);
-  -webkit-clip-path: inset(0 0 -1000px 0);
-  clip-path: inset(0 0 -1000px 0);
-}
-.c-header .c-header-toggler-icon:focus {
-  outline: none;
-}
-button:focus {
-  outline: none;
-}
-.header-link {
-  padding-left: 0.2rem;
-}
-</style>
