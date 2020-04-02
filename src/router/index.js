@@ -1,9 +1,5 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Home from "../views/Home.vue";
-import StatisticalProcesses from "../views/referential/StatisticalProcesses";
-import BusinessProcesses from "../views/process/BusinessProcesses";
-import Datasets from "../views/structural/Datasets";
 
 Vue.use(VueRouter);
 
@@ -11,22 +7,32 @@ const routes = [
   {
     path: "/",
     name: "Home",
-    component: Home
+    component: () => import("../views/Home.vue")
   },
   {
     path: "/referential",
-    name: "Referential",
-    component: StatisticalProcesses
+    name: "StatisticalProcessList",
+    component: () => import("../views/referential/StatisticalProcessList")
+  },
+  {
+    path: "/referential/:id",
+    name: "StatisticalProcessEdit",
+    component: () => import("../views/referential/StatisticalProcessEdit")
+  },
+  {
+    path: "/referential/add",
+    name: "StatisticalProcessAdd",
+    component: () => import("../views/referential/StatisticalProcessAdd")
   },
   {
     path: "/process",
     name: "Process",
-    component: BusinessProcesses
+    component: () => import("../views/process/BusinessProcesses")
   },
   {
     path: "/structural",
     name: "Structural",
-    component: Datasets
+    component: () => import("../views/structural/Datasets")
   },
   { path: "*", redirect: "/" }
 ];

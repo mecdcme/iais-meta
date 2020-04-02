@@ -10,7 +10,7 @@
           This section contains the list of processes documented according to
           GSBPM standard
           <p class="section-link">
-            <router-link tag="a" :to="{ name: 'Referential' }"
+            <router-link tag="a" :to="{ name: 'StatisticalProcessList' }"
               >Go to referential metadata section</router-link
             ><CIcon name="cilArrowCircleRight"></CIcon>
           </p>

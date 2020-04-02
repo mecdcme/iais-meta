@@ -1,0 +1,25 @@
+{
+    "statisticalProcesses": [
+        {
+            "id": 1,
+            "name": "Labour force survey",
+            "acronym": "LFS",
+            "respFullName": "Han Solo",
+            "respDivision": "Cadet"
+        },
+        {
+            "id": 2,
+            "name": "Time use survey",
+            "acronym": "TUS",
+            "respFullName": "Chewbacca",
+            "respDivision": "Wookiee"
+        },
+        {
+            "id": 3,
+            "name": "Population census",
+            "acronym": "CENS",
+            "respFullName": "Princess Leia",
+            "respDivision": "Princess"
+        }
+    ]
+}
