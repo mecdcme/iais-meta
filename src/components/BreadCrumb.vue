@@ -2,7 +2,7 @@
   <ol class="breadcrumb border-0 mb-0">
     <li role="presentation" class="breadcrumb-item">
       <router-link tag="a" to="/">
-        Home
+        Metadata
       </router-link>
     </li>
     <li

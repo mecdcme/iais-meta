@@ -7,7 +7,7 @@
           <div class="card-header-actions">
             <router-link
               tag="a"
-              to="/referential/add"
+              to="/metadata/referential/add"
               class="card-header-action"
             >
               <CIcon name="cilPlus"></CIcon>

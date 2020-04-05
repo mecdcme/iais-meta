@@ -17,7 +17,7 @@ export default {
   },
   watch: {
     $route(to) {
-      this.show = this.$router.currentRoute.name != "Home";
+      this.show = this.$router.currentRoute.name != "Metadata";
       var pathArray = to.path.split("/");
       var parentPath = "";
       for (let i = 0; i < pathArray.length - 1; i++) {

@@ -6,33 +6,9 @@
           Business processes
         </header>
         <div class="card-body">
-          <ul>
-            <li
-              v-for="businessProcess in businessProcesses"
-              :key="businessProcess.id"
-            >
-              {{ businessProcess.name }}
-            </li>
-          </ul>
+          Buh!
         </div>
       </div>
     </div>
   </div>
 </template>
-
-<script>
-import { mapGetters } from "vuex";
-
-export default {
-  computed: {
-    ...mapGetters({
-      businessProcesses: "getBusinessProcesses"
-    })
-  },
-  created() {
-    this.$store.dispatch("setBusinessProcesses");
-  }
-};
-</script>
-
-<style></style>

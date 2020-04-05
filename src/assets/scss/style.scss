@@ -34,3 +34,7 @@
 button:focus {
   outline: none;
 }
+
+.c-icon:not(.c-icon-c-s):not(.c-icon-custom-size){
+  height: 1.1rem!important;
+}
