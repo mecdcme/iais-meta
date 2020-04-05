@@ -4,12 +4,12 @@
       <CCol class="col-lg-8 col-md-12">
         <CCardGroup>
           <CCard
-            color="primary"
+            color="gradient-primary"
             text-color="white"
-            class="p-4 d-md-down-none"
+            class="p-2 d-md-down-none"
             body-wrapper
           >
-            <h2>IAIS</h2>
+            <h3>IAIS</h3>
             <p class="description">
               Welcome to IAIS, the Integrated Automated Information System
               developed in the context of PARSTAT project.
@@ -18,14 +18,11 @@
               IAIS offers a set of functionalities to document surveys,
               according to GSBPM and GSIM standards.
             </p>
-            <p class="disclaimer">
-              The project funded by EU PARSTAT project.
-            </p>
           </CCard>
-          <CCard class="p-4">
+          <CCard class="p-2">
             <CCardBody>
               <CForm>
-                <h1>Login</h1>
+                <h3>Login</h3>
                 <p class="text-muted">Sign In to your account</p>
                 <CInput
                   placeholder="Email"
@@ -53,7 +50,7 @@
                       >Login</CButton
                     >
                   </CCol>
-                  <CCol col="6" class="text-right">
+                  <CCol col="6" class="text-right" style="padding-top:8px">
                     <router-link tag="a" to="/register">
                       Register now
                     </router-link>
@@ -90,10 +87,7 @@ export default {
 </script>
 
 <style scoped>
-h1 {
-  font-size: 2.1rem;
-}
 .description {
-  padding-top: 0.2rem;
+  padding-top: 0.5rem;
 }
 </style>
