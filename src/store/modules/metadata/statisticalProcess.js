@@ -11,9 +11,9 @@ const mutations = {
 };
 
 const actions = {
-  setStatisticalProcesses({ commit }) {
+  setStatisticalProcesses({ commit, getters }) {
     axios
-      .get("/statisticalProcesses.json")
+      .get("/statisticalProcesses.json" + "?auth=" + getters.token)
       .then(response => {
         const statisticalProcesses = response.data;
         console.log(statisticalProcesses);

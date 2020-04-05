@@ -18,17 +18,19 @@
     <CDropdownItem> <CIcon name="cil-user" /> Profile </CDropdownItem>
     <CDropdownItem> <CIcon name="cil-settings" /> Settings </CDropdownItem>
     <CDropdownDivider />
-    <CDropdownItem> <CIcon name="cil-lock-locked" /> Logout </CDropdownItem>
+    <CDropdownItem @click="logout">
+      <CIcon name="cil-lock-locked" /> Logout
+    </CDropdownItem>
   </CDropdown>
 </template>
 
 <script>
 export default {
   name: "HeaderDropdownAccnt",
-  data() {
-    return {
-      itemsCount: 42
-    };
+  methods: {
+    logout() {
+      this.$store.dispatch("logout");
+    }
   }
 };
 </script>

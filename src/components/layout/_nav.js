@@ -19,19 +19,19 @@ export default [
       {
         _name: "CSidebarNavItem",
         name: "Referential",
-        to: "/referential",
+        to: "/metadata/referential",
         icon: "cil-layers"
       },
       {
         _name: "CSidebarNavItem",
         name: "Structural",
-        to: "/structural",
+        to: "/metadata/structural",
         icon: "cil-layers"
       },
       {
         _name: "CSidebarNavItem",
         name: "Process",
-        to: "/process",
+        to: "/metadata/process",
         icon: "cil-layers"
       }
     ]
