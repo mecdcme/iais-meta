@@ -52,7 +52,7 @@
                   </CCol>
                   <CCol col="6" class="text-right" style="padding-top:8px">
                     <router-link tag="a" to="/register">
-                      Register now
+                      Register
                     </router-link>
                   </CCol>
                 </CRow>

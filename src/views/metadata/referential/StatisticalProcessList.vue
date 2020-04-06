@@ -71,9 +71,3 @@ export default {
   }
 };
 </script>
-
-<style>
-.table thead th {
-  border-top: none;
-}
-</style>

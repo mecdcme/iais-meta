@@ -1,19 +1,18 @@
 <template>
   <ol class="breadcrumb border-0 mb-0">
-    <li role="presentation" class="breadcrumb-item">
-      <router-link tag="a" to="/">
-        Metadata
-      </router-link>
-    </li>
     <li
       role="presentation"
-      class="active breadcrumb-item"
-      v-for="breadcrumb in breadcrumbs"
+      class="breadcrumb-item"
+      v-for="(breadcrumb, index) in breadcrumbs"
       :key="breadcrumb.path"
     >
-      <router-link tag="a" :to="breadcrumb.to">
-        {{ breadcrumb.path }}
-      </router-link>
+      <router-link
+        v-if="index < breadcrumbs.length - 1"
+        tag="a"
+        :to="breadcrumb.to"
+        >{{ upperCaseFirst(breadcrumb.path) }}</router-link
+      >
+      <template v-else>{{ upperCaseFirst(breadcrumb.path) }}</template>
     </li>
   </ol>
 </template>
@@ -22,17 +21,24 @@
 export default {
   data() {
     return {
-      breadcrumbs: []
+      breadcrumbs: [
+        {
+          path: "metadata",
+          to: "/metadata"
+        }
+      ]
     };
+  },
+  methods: {
+    upperCaseFirst(str) {
+      return str.replace(/^\w/, c => c.toUpperCase());
+    }
   },
   watch: {
     $route() {
-      console.log("crumbs");
       let pathArray = this.$route.path.split("/");
       pathArray.shift();
-      console.log(pathArray);
       let breadcrumbs = pathArray.reduce((breadcrumbArray, path, idx) => {
-        console.log(breadcrumbArray);
         breadcrumbArray.push({
           path: path,
           to: breadcrumbArray[idx - 1]
