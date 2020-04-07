@@ -36,7 +36,7 @@ const actions = {
         });
 
         localStorage.setItem("token", res.data.idToken); //store token in browser storage
-        localStorage.setItem("userId", res.data.localId); //store token in browser storage
+        localStorage.setItem("userId", res.data.localId); //store userid in browser storage
 
         router.push("/"); //Go to main page
       })
