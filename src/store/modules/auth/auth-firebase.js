@@ -4,7 +4,7 @@ import router from "@/router/index";
 const state = {
   idToken: localStorage.getItem("token") || null,
   userId: localStorage.getItem("userId") || null,
-  status: null //This variable stores Login and Register error statuses, status = [INVALID_CREDENTIALS, USER_EXISTS]
+  status: null //This variable stores Login and Register error statuses, status = [LOGGED, INVALID_CREDENTIALS, USER_EXISTS]
 };
 
 const mutations = {
@@ -42,6 +42,8 @@ const actions = {
         localStorage.setItem("token", res.data.idToken); //store token in browser storage
         localStorage.setItem("userId", res.data.localId); //store token in browser storage
 
+        commit("SET_STATUS", "LOGGED");
+
         router.push("/"); //Go to main page
       })
       .catch(error => {
@@ -68,6 +70,8 @@ const actions = {
         });
         localStorage.setItem("token", res.data.idToken); //store token in browser storage
         localStorage.setItem("userId", res.data.localId); //store token in browser storage
+
+        commit("SET_STATUS", "LOGGED");
 
         router.push("/"); //Go to main page
       })
