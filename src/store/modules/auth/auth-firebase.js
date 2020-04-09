@@ -97,7 +97,7 @@ const getters = {
   token(state) {
     return state.idToken;
   },
-  status(state){
+  status(state) {
     return state.status;
   }
 };
