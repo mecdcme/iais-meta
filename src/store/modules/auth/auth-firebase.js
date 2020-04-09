@@ -3,7 +3,8 @@ import router from "@/router/index";
 
 const state = {
   idToken: localStorage.getItem("token") || null,
-  userId: localStorage.getItem("userId") || null
+  userId: localStorage.getItem("userId") || null,
+  status: null //This variable stores Login and Register error statuses, status = [INVALID_CREDENTIALS, USER_EXISTS]
 };
 
 const mutations = {
@@ -14,6 +15,9 @@ const mutations = {
   CLEAR_AUTH_DATA(state) {
     state.idToken = null;
     state.userId = null;
+  },
+  SET_STATUS(state, status) {
+    state.status = status;
   }
 };
 const actions = {
@@ -36,11 +40,18 @@ const actions = {
         });
 
         localStorage.setItem("token", res.data.idToken); //store token in browser storage
-        localStorage.setItem("userId", res.data.localId); //store userid in browser storage
+        localStorage.setItem("userId", res.data.localId); //store token in browser storage
 
         router.push("/"); //Go to main page
       })
-      .catch(error => console.log(error));
+      .catch(error => {
+        //console.log(error.response.data.error.code);
+        //console.log(error.response.data.error.message);
+        const code = error.response.data.error.code;
+        if (code == 400) {
+          commit("SET_STATUS", "INVALID_CREDENTIALS");
+        }
+      });
   },
   register({ commit }, authData) {
     axios
@@ -60,7 +71,14 @@ const actions = {
 
         router.push("/"); //Go to main page
       })
-      .catch(error => console.log(error));
+      .catch(error => {
+        //console.log(error.response.data.error.code);
+        //console.log(error.response.data.error.message);
+        const code = error.response.data.error.code;
+        if (code == 400) {
+          commit("SET_STATUS", "USER_EXISTS");
+        }
+      });
   },
   logout({ commit }) {
     localStorage.removeItem("token");
@@ -78,6 +96,9 @@ const getters = {
   },
   token(state) {
     return state.idToken;
+  },
+  status(state){
+    return state.status;
   }
 };
 

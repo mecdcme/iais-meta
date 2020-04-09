@@ -7,7 +7,13 @@
             <CCardBody class="p-4">
               <CForm>
                 <h3>Register</h3>
-                <p class="text-muted">Create your account</p>
+                <p class="global-welcome">Create your account</p>
+                <div class="global-feedback" :class="{ show: showGlobalError }">
+                  Account already exists! Please go to
+                  <router-link tag="a" to="/login">
+                    <span>login page</span>
+                  </router-link>
+                </div>
                 <div class="input-group">
                   <div class="input-group-prepend">
                     <div class="input-group-text">
@@ -37,7 +43,6 @@
                     class="form-control"
                     :class="{ invalid: $v.email.$error }"
                     placeholder="Email"
-                    @input="$v.email.$touch()"
                     v-model="email"
                   />
                 </div>
@@ -51,28 +56,38 @@
                     </div>
                   </div>
                   <input
-                    type="text"
+                    type="password"
                     class="form-control"
                     :class="{ invalid: $v.password.$error }"
                     placeholder="Password"
-                    @input="$v.password.$touch()"
                     v-model="password"
                   />
                 </div>
-                <div class="feedback" :class="{ show: $v.username.$error }">
-                  Please provide a password.
+                <div class="feedback" :class="{ show: $v.password.$error }">
+                  Password should contain at least 6 characters.
                 </div>
-                <CInput
-                  placeholder="Repeat password"
-                  type="password"
-                  class="mb-4"
-                  v-model="repeatPassword"
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text">
+                      <CIcon name="cil-lock-locked"></CIcon>
+                    </div>
+                  </div>
+                  <input
+                    type="password"
+                    class="form-control"
+                    :class="{ invalid: $v.confirmPassword.$error }"
+                    placeholder="Repeat password"
+                    @input="$v.confirmPassword.$touch()"
+                    v-model="confirmPassword"
+                  />
+                </div>
+                <div
+                  class="feedback"
+                  :class="{ show: $v.confirmPassword.$error }"
                 >
-                  <template #prepend-content
-                    ><CIcon name="cil-lock-locked"
-                  /></template>
-                </CInput>
-                <CButton color="success" block @click.prevent="handleSubmit"
+                  Passwords are different
+                </div>
+                <CButton color="success" block @click.prevent="handleSubmit()"
                   >Create Account</CButton
                 >
               </CForm>
@@ -85,7 +100,7 @@
 </template>
 
 <script>
-import { required, email } from "vuelidate/lib/validators";
+import { required, email, minLength, sameAs } from "vuelidate/lib/validators";
 
 export default {
   name: "Register",
@@ -94,8 +109,18 @@ export default {
       username: "",
       email: "",
       password: "",
-      repeatPassword: ""
+      confirmPassword: ""
     };
+  },
+  computed: {
+    showGlobalError() {
+      const status = this.$store.getters.status;
+      //console.log(status);
+      if (status == "USER_EXISTS") {
+        return true;
+      }
+      return false;
+    }
   },
   validations: {
     username: {
@@ -106,29 +131,62 @@ export default {
       email
     },
     password: {
-      required
+      required,
+      minLen: minLength(6)
+    },
+    confirmPassword: {
+      sameAs: sameAs("password")
     }
   },
   methods: {
     handleSubmit() {
-      const formData = {
-        username: this.username,
-        email: this.email,
-        password: this.password
-      };
-      this.$store.dispatch("register", formData);
+      this.$v.$touch(); //validate form data
+      if (!this.$v.$invalid) {
+        const formData = {
+          username: this.username,
+          email: this.email,
+          password: this.password
+        };
+        this.$store.dispatch("register", formData);
+      }
     }
   }
 };
 </script>
 
 <style scoped>
+h3 {
+  margin-bottom: 0.1rem;
+}
+
+a {
+  color: #e55353;
+}
+
+a:hover {
+  color: #e55353;
+  text-decoration: underline;
+}
+
 .form-control:focus {
   outline: 0;
   box-shadow: none;
   color: #768192;
   background-color: #fff;
   border-color: #d8dbe0;
+}
+
+.global-welcome {
+  margin-bottom: 0px;
+}
+.global-feedback {
+  visibility: hidden;
+  width: 100%;
+  margin-top: 0.25rem;
+  margin-bottom: 0.5rem;
+  font-size: 100%;
+  color: #e55353;
+  font-style: italic;
 }
 
 .feedback {

@@ -23,24 +23,40 @@
             <CCardBody>
               <CForm>
                 <h3>Login</h3>
-                <p class="text-muted">Sign In to your account</p>
-                <CInput
-                  placeholder="Email"
-                  autocomplete="username email"
-                  v-model="email"
-                >
-                  <template #prepend-content><CIcon name="cil-user"/></template>
-                </CInput>
-                <CInput
-                  placeholder="Password"
-                  type="password"
-                  autocomplete="curent-password"
-                  v-model="password"
-                >
-                  <template #prepend-content
-                    ><CIcon name="cil-lock-locked"
-                  /></template>
-                </CInput>
+                <p class="global-welcome">Sign In to your account</p>
+                <div class="global-feedback" :class="{ show: showGlobalError }">
+                  Invalid email or password
+                </div>
+                <div class="form-group">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">
+                        <CIcon name="cilAt"></CIcon>
+                      </div>
+                    </div>
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Email"
+                      v-model="email"
+                    />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">
+                        <CIcon name="cil-lock-locked"></CIcon>
+                      </div>
+                    </div>
+                    <input
+                      type="password"
+                      class="form-control"
+                      placeholder="Password"
+                      v-model="password"
+                    />
+                  </div>
+                </div>
                 <CRow>
                   <CCol col="6" class="text-left">
                     <CButton
@@ -74,6 +90,16 @@ export default {
       password: ""
     };
   },
+  computed: {
+    showGlobalError() {
+      const status = this.$store.getters.status;
+      //console.log(status);
+      if (status == "INVALID_CREDENTIALS") {
+        return true;
+      }
+      return false;
+    }
+  },
   methods: {
     handleSubmit() {
       const formData = {
@@ -87,7 +113,36 @@ export default {
 </script>
 
 <style scoped>
+h3 {
+  margin-bottom: 0.1rem;
+}
+
 .description {
   padding-top: 0.5rem;
+}
+
+.form-control:focus {
+  outline: 0;
+  box-shadow: none;
+  color: #768192;
+  background-color: #fff;
+  border-color: #d8dbe0;
+}
+
+.global-welcome {
+  margin-bottom: 0px;
+}
+.global-feedback {
+  visibility: hidden;
+  width: 100%;
+  margin-top: 0.25rem;
+  margin-bottom: 0.5rem;
+  font-size: 100%;
+  color: #e55353;
+  font-style: italic;
+}
+
+.show {
+  visibility: visible;
 }
 </style>
