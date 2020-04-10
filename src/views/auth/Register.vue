@@ -4,16 +4,21 @@
       <CRow class="justify-content-center">
         <CCol md="6" lg="4">
           <CCard class="mx-4 mb-0">
+            <CCardHeader align="center">
+              <h3>Register to IAIS</h3>
+              <p class="welcome">Create your account</p>
+            </CCardHeader>
             <CCardBody class="p-4">
               <CForm>
-                <h3>Register</h3>
-                <p class="global-welcome">Create your account</p>
-                <div class="global-feedback" :class="{ show: showGlobalError }">
-                  Account already exists! Please go to
-                  <router-link tag="a" to="/login">
-                    <span>login page</span>
-                  </router-link>
-                </div>
+                <CAlert color="danger" v-if="showGlobalError">
+                  <span>Account exists!</span>
+                  <span>
+                    Please go to
+                    <router-link tag="a" to="/login">
+                      <span>login page</span>
+                    </router-link>
+                  </span>
+                </CAlert>
                 <div class="input-group">
                   <div class="input-group-prepend">
                     <div class="input-group-text">
@@ -155,8 +160,15 @@ export default {
 </script>
 
 <style scoped>
+.c-app:not(.c-legacy-theme):not(.c-dark-theme) .card {
+  border: 1px solid #d8dee2;
+}
+
 h3 {
-  margin-bottom: 0.1rem;
+  margin-bottom: 0.4rem;
+  font-size: 24px;
+  font-weight: 300;
+  letter-spacing: -0.5px;
 }
 
 a {
@@ -168,6 +180,16 @@ a:hover {
   text-decoration: underline;
 }
 
+.btn:focus,
+.btn-success:focus {
+  box-shadow: none;
+}
+
+.btn-success:not(:disabled):not(.disabled):active:focus,
+.btn-success:not(:disabled):not(.disabled).active:focus {
+  box-shadow: none;
+}
+
 .form-control:focus {
   outline: 0;
   box-shadow: none;
@@ -176,17 +198,8 @@ a:hover {
   border-color: #d8dbe0;
 }
 
-.global-welcome {
+.welcome {
   margin-bottom: 0px;
-}
-.global-feedback {
-  visibility: hidden;
-  width: 100%;
-  margin-top: 0.25rem;
-  margin-bottom: 0.5rem;
-  font-size: 100%;
-  color: #e55353;
-  font-style: italic;
 }
 
 .feedback {
