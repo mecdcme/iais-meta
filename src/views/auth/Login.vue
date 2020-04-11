@@ -1,32 +1,22 @@
 <template>
-  <CContainer class="d-flex content-center min-vh-100">
-    <CRow class="justify-content-center">
-      <CCol class="col-lg-8 col-md-12">
-        <CCardGroup>
-          <CCard
-            color="gradient-primary"
-            text-color="white"
-            class="p-2 d-md-down-none"
-            body-wrapper
-          >
-            <h3>IAIS</h3>
-            <p class="description">
-              Welcome to IAIS, the Integrated Automated Information System
-              developed in the context of PARSTAT project.
-            </p>
-            <p class="description">
-              IAIS offers a set of functionalities to document surveys,
-              according to GSBPM and GSIM standards.
-            </p>
-          </CCard>
-          <CCard class="p-2">
+  <div class="d-flex align-items-center min-vh-100">
+    <CContainer fluid>
+      <CRow class="justify-content-center">
+        <CCol md="6" lg="4">
+          <CCard class="mx-4 mb-0"
+            ><CCardHeader align="center">
+              <img src="img/logo.png" class="logo" />
+              <h3>Sign in to IAIS</h3>
+            </CCardHeader>
             <CCardBody>
               <CForm>
-                <h3>Login</h3>
-                <p class="global-welcome">Sign In to your account</p>
-                <div class="global-feedback" :class="{ show: showGlobalError }">
-                  Invalid email or password
-                </div>
+                <CAlert
+                  color="danger"
+                  v-if="showGlobalError"
+                  class="text-center"
+                >
+                  <span>Incorrect email or password!</span>
+                </CAlert>
                 <div class="form-group">
                   <div class="input-group">
                     <div class="input-group-prepend">
@@ -58,27 +48,30 @@
                   </div>
                 </div>
                 <CRow>
-                  <CCol col="6" class="text-left">
+                  <CCol col="12">
                     <CButton
                       color="primary"
-                      class="px-4"
+                      class="btn-block"
                       @click.prevent="handleSubmit"
-                      >Login</CButton
+                      >Sign in</CButton
                     >
                   </CCol>
-                  <CCol col="6" class="text-right" style="padding-top:8px">
+                </CRow>
+                <CRow>
+                  <CCol col="12" class="register">
+                    <span>New to IAIS?</span>
                     <router-link tag="a" to="/register">
-                      Register
+                      Create an account
                     </router-link>
                   </CCol>
                 </CRow>
               </CForm>
             </CCardBody>
           </CCard>
-        </CCardGroup>
-      </CCol>
-    </CRow>
-  </CContainer>
+        </CCol>
+      </CRow>
+    </CContainer>
+  </div>
 </template>
 
 <script>
@@ -103,7 +96,7 @@ export default {
   methods: {
     handleSubmit() {
       const formData = {
-        email: this.email,
+        email: this.email.trim(),
         password: this.password
       };
       this.$store.dispatch("login", formData);
@@ -114,13 +107,37 @@ export default {
 
 <style scoped>
 h3 {
-  margin-bottom: 0.1rem;
+  margin-bottom: 0.4rem;
+  font-size: 24px;
+  font-weight: 300;
+  letter-spacing: -0.5px;
 }
 
-.description {
-  padding-top: 0.5rem;
+.logo {
+  width: 30%;
+  margin-bottom: 0.4rem;
+  margin-top: 0.3rem;
 }
 
+.register {
+  margin-top: 2rem;
+  border-top: 1px solid #d8dbe0;
+  padding-top: 0.8rem;
+  text-align: center;
+}
+
+.btn:focus,
+.btn-success:focus {
+  box-shadow: none;
+}
+
+.btn-success:not(:disabled):not(.disabled):active:focus,
+.btn-success:not(:disabled):not(.disabled).active:focus {
+  box-shadow: none;
+}
+.form-group {
+  margin-bottom: 1.5rem;
+}
 .form-control:focus {
   outline: 0;
   box-shadow: none;
@@ -129,20 +146,7 @@ h3 {
   border-color: #d8dbe0;
 }
 
-.global-welcome {
+.welcome {
   margin-bottom: 0px;
-}
-.global-feedback {
-  visibility: hidden;
-  width: 100%;
-  margin-top: 0.25rem;
-  margin-bottom: 0.5rem;
-  font-size: 100%;
-  color: #e55353;
-  font-style: italic;
-}
-
-.show {
-  visibility: visible;
 }
 </style>

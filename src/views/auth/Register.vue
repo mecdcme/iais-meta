@@ -5,8 +5,8 @@
         <CCol md="6" lg="4">
           <CCard class="mx-4 mb-0">
             <CCardHeader align="center">
+              <img src="img/logo.png" class="logo" />
               <h3>Register to IAIS</h3>
-              <p class="welcome">Create your account</p>
             </CCardHeader>
             <CCardBody class="p-4">
               <CForm>
@@ -149,7 +149,7 @@ export default {
       if (!this.$v.$invalid) {
         const formData = {
           username: this.username,
-          email: this.email,
+          email: this.email.trim(),
           password: this.password
         };
         this.$store.dispatch("register", formData);
@@ -169,6 +169,12 @@ h3 {
   font-size: 24px;
   font-weight: 300;
   letter-spacing: -0.5px;
+}
+
+.logo {
+  width: 30%;
+  margin-bottom: 0.2rem;
+  margin-top: 0.3rem;
 }
 
 a {

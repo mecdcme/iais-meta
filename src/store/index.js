@@ -1,9 +1,9 @@
 import Vue from "vue";
 import Vuex from "vuex";
 
-import auth from "./modules/auth/auth-firebase";
-import coreui from "./modules/coreui";
-import statisticalProcess from "./modules/metadata/statisticalProcess";
+import auth from "./auth.module";
+import coreui from "./coreui.module";
+import statisticalProcess from "./statisticalProcess.module";
 
 Vue.use(Vuex);
 
