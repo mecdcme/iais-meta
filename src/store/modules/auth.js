@@ -1,5 +1,5 @@
 import router from "@/router/index";
-import authService from "@/services/auth.service";
+import { authService } from "@/services";
 
 const state = {
   idToken: localStorage.getItem("token") || null,
@@ -86,7 +86,7 @@ const getters = {
   }
 };
 
-export default {
+export const auth = {
   state,
   actions,
   mutations,

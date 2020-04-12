@@ -36,7 +36,7 @@ const routes = [
           import("../views/metadata/referential/StatisticalProcessList")
       },
       {
-        path: "metadata/referential/:id",
+        path: "metadata/referential/edit/:id",
         name: "StatisticalProcessEdit",
         component: () =>
           import("../views/metadata/referential/StatisticalProcessEdit")

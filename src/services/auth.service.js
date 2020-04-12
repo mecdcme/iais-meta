@@ -4,7 +4,7 @@ const axiosAuth = axios.create({
   baseURL: "https://identitytoolkit.googleapis.com/v1" //authentication server
 });
 
-export default {
+export const authService = {
   login,
   register
 };

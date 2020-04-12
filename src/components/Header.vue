@@ -11,7 +11,7 @@
       @click="$store.commit('toggleSidebarDesktop')"
     />
     <CHeaderBrand class="mx-auto d-lg-none" to="/">
-      <img src="img/logo.png" height="40" />
+      <img src="/img/logo.png" height="40" />
     </CHeaderBrand>
     <CHeaderNav class="d-md-down-none mr-auto">
       <CHeaderNavItem class="px-3">
@@ -38,27 +38,10 @@ import BreadCrumb from "./BreadCrumb";
 
 export default {
   name: "Header",
-  data() {
-    return {
-      show: false,
-      back: "/"
-    };
-  },
   components: {
     "app-header-dropdown-account": HeaderDropdownAccnt,
     "app-header-back-btn": HeaderBackBtn,
     "app-header-breadcrumb": BreadCrumb
-  },
-  watch: {
-    $route(to) {
-      this.show = this.$router.currentRoute.name != "Home";
-      var pathArray = to.path.split("/");
-      var parentPath = "";
-      for (let i = 0; i < pathArray.length - 1; i++) {
-        parentPath += pathArray[i] + "/";
-      }
-      this.back = parentPath == "/" ? "/" : parentPath.slice(0, -1);
-    }
   }
 };
 </script>

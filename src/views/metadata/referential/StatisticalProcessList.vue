@@ -24,7 +24,7 @@
                   <th scope="col">Survey Name</th>
                   <th scope="col">Acronym</th>
                   <th scope="col">Responsible</th>
-                  <th scope="col" colspan="1"></th>
+                  <th scope="col" colspan="3" width="5%"></th>
                 </tr>
               </thead>
               <tbody>
@@ -47,6 +47,28 @@
                       <CIcon name="cilPencil"></CIcon>
                     </router-link>
                   </td>
+                  <td>
+                    <router-link
+                      tag="a"
+                      :to="{
+                        name: 'StatisticalProcessEdit',
+                        params: { id: statisticalProcess.id }
+                      }"
+                    >
+                      <CIcon name="cilMagnifyingGlass"></CIcon>
+                    </router-link>
+                  </td>
+                  <td>
+                    <router-link
+                      tag="a"
+                      :to="{
+                        name: 'StatisticalProcessEdit',
+                        params: { id: statisticalProcess.id }
+                      }"
+                    >
+                      <CIcon name="cilTrash"></CIcon>
+                    </router-link>
+                  </td>
                 </tr>
               </tbody>
             </table>
@@ -62,12 +84,10 @@ import { mapGetters } from "vuex";
 
 export default {
   computed: {
-    ...mapGetters({
-      statisticalProcesses: "getStatisticalProcesses"
-    })
+    ...mapGetters(["statisticalProcesses"])
   },
   created() {
-    this.$store.dispatch("setStatisticalProcesses");
+    this.$store.dispatch("storeStatisticalProcesses");
   }
 };
 </script>

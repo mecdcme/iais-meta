@@ -30,12 +30,14 @@
                     class="form-control"
                     :class="{ invalid: $v.username.$error }"
                     placeholder="User name"
-                    @input="$v.username.$touch()"
                     v-model="username"
                   />
-                </div>
-                <div class="feedback" :class="{ show: $v.username.$error }">
-                  Please enter your username.
+                  <span
+                    class="help-block"
+                    :class="{ show: $v.username.$error }"
+                  >
+                    Please enter your username.
+                  </span>
                 </div>
                 <div class="input-group">
                   <div class="input-group-prepend">
@@ -50,9 +52,9 @@
                     placeholder="Email"
                     v-model="email"
                   />
-                </div>
-                <div class="feedback" :class="{ show: $v.email.$error }">
-                  Please enter a valid email address.
+                  <span class="help-block" :class="{ show: $v.email.$error }">
+                    Please enter a valid email address.
+                  </span>
                 </div>
                 <div class="input-group">
                   <div class="input-group-prepend">
@@ -67,9 +69,12 @@
                     placeholder="Password"
                     v-model="password"
                   />
-                </div>
-                <div class="feedback" :class="{ show: $v.password.$error }">
-                  Password should contain at least 6 characters.
+                  <span
+                    class="help-block"
+                    :class="{ show: $v.password.$error }"
+                  >
+                    Password should contain at least 6 characters.
+                  </span>
                 </div>
                 <div class="input-group">
                   <div class="input-group-prepend">
@@ -85,12 +90,12 @@
                     @input="$v.confirmPassword.$touch()"
                     v-model="confirmPassword"
                   />
-                </div>
-                <div
-                  class="feedback"
-                  :class="{ show: $v.confirmPassword.$error }"
-                >
-                  Passwords are different
+                  <span
+                    class="help-block"
+                    :class="{ show: $v.confirmPassword.$error }"
+                  >
+                    Passwords are different
+                  </span>
                 </div>
                 <CButton color="success" block @click.prevent="handleSubmit()"
                   >Create Account</CButton
@@ -208,7 +213,7 @@ a:hover {
   margin-bottom: 0px;
 }
 
-.feedback {
+.help-block {
   visibility: hidden;
   width: 100%;
   margin-top: 0.25rem;

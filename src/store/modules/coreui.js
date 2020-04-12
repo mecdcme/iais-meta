@@ -26,7 +26,7 @@ const getters = {
   }
 };
 
-export default {
+export const coreui = {
   state,
   mutations,
   getters

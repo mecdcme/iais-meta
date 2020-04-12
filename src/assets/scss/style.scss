@@ -22,6 +22,12 @@
   box-shadow: 0 1px 1px 0 rgba(60,75,100,.14), 0 2px 1px -1px rgba(60,75,100,.12), 0 1px 3px 0 rgba(60,75,100,.2);
 }
 
+.c-app:not(.c-dark-theme) .btn:not([class*=ghost]):not([class*=link]):not([class*=outline]):not([class*=transparent]) {
+  border: 0;
+  box-shadow: 0 1px 1px 0 rgba(60,75,100,.14), 0 2px 1px -1px rgba(60,75,100,.12), 0 1px 3px 0 rgba(60,75,100,.2);
+}
+
+
 .card-header:not(.content-center) > .c-icon:first-child {
   margin-right: 0.1rem;
   margin-top: 0.1rem;
@@ -47,4 +53,21 @@ button:focus {
 .table thead th {
   border-top: none;
   border-bottom: none;
+}
+
+/* Validation styles*/
+
+.help-block {
+  visibility: hidden;
+  font-size: 80%;
+  color: #e55353;
+  font-style: italic;
+}
+
+.invalid {
+  border-color: #e55353 !important;
+}
+
+.show {
+  visibility: visible;
 }

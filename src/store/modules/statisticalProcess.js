@@ -11,7 +11,7 @@ const mutations = {
 };
 
 const actions = {
-  setStatisticalProcesses({ commit, getters }) {
+  storeStatisticalProcesses({ commit, getters }) {
     axios
       .get("/statisticalProcesses.json" + "?auth=" + getters.token)
       .then(response => {
@@ -24,12 +24,12 @@ const actions = {
 };
 
 const getters = {
-  getStatisticalProcesses: state => {
+  statisticalProcesses: state => {
     return state.statisticalProcesses;
   }
 };
 
-export default {
+export const statisticalProcess = {
   state,
   mutations,
   actions,
