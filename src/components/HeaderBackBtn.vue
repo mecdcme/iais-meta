@@ -8,7 +8,6 @@
 
 <script>
 export default {
-  name: "HeaderBackBtn",
   data() {
     return {
       show: false,

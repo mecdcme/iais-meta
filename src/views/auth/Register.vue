@@ -30,7 +30,7 @@
                     class="form-control"
                     :class="{ invalid: $v.username.$error }"
                     placeholder="User name"
-                    v-model="username"
+                    v-model.trim="username"
                   />
                   <span
                     class="help-block"
@@ -50,7 +50,7 @@
                     class="form-control"
                     :class="{ invalid: $v.email.$error }"
                     placeholder="Email"
-                    v-model="email"
+                    v-model.trim="email"
                   />
                   <span class="help-block" :class="{ show: $v.email.$error }">
                     Please enter a valid email address.

@@ -1,31 +1,64 @@
-import axios from "axios";
+import router from "@/router";
+import { statisticalProcessService } from "@/services";
 
 const state = {
-  statisticalProcesses: []
+  statisticalProcesses: [],
+  statisticalProcess: null
 };
 
 const mutations = {
   SET_STATISTICAL_PROCESSES(state, statisticalProcesses) {
     state.statisticalProcesses = statisticalProcesses;
+  },
+  SET_STATISTICAL_PROCESS(state, statisticalProcess) {
+    state.statisticalProcess = statisticalProcess;
   }
 };
 
 const actions = {
-  storeStatisticalProcesses({ commit, getters }) {
-    axios
-      .get("/statisticalProcesses.json" + "?auth=" + getters.token)
-      .then(response => {
-        const statisticalProcesses = response.data;
-        console.log(statisticalProcesses);
+  getStatisticalProcesses({ commit, getters }) {
+    statisticalProcessService.getAll(getters.token).then(
+      data => {
+        const statisticalProcesses = data;
         commit("SET_STATISTICAL_PROCESSES", statisticalProcesses);
-      })
-      .catch(error => console.log(error));
+        commit("SET_STATISTICAL_PROCESS", null); //clear statistical process
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  },
+  getStatisticalProcessById({ commit, getters }, id) {
+    statisticalProcessService.getById(getters.token, id).then(
+      data => {
+        const statisticalProcess = data;
+        commit("SET_STATISTICAL_PROCESS", statisticalProcess);
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  },
+  saveStatisticalProcess({ getters, dispatch }, formData) {
+    statisticalProcessService.getById(getters.token, formData).then(
+      data => {
+        console.log(data);
+        dispatch("success", data.name + " saved!");
+        router.push("/metadata/referential");
+      },
+      error => {
+        console.log(error);
+      }
+    );
   }
 };
 
 const getters = {
   statisticalProcesses: state => {
     return state.statisticalProcesses;
+  },
+  statisticalProcess: state => {
+    return state.statisticalProcess;
   }
 };
 

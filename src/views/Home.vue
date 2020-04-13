@@ -2,6 +2,7 @@
   <div id="app" class="c-app">
     <app-sidebar></app-sidebar>
     <CWrapper>
+      <app-toast></app-toast>
       <app-header />
       <div class="c-body">
         <main class="c-main">
@@ -21,13 +22,15 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Sidebar from "@/components/Sidebar";
+import Toast from "@/components/Toast";
 
 export default {
   name: "App",
   components: {
     "app-header": Header,
     "app-footer": Footer,
-    "app-sidebar": Sidebar
+    "app-sidebar": Sidebar,
+    "app-toast": Toast
   }
 };
 </script>

@@ -20,11 +20,11 @@
             <table class="table">
               <thead>
                 <tr>
-                  <th scope="col">#</th>
                   <th scope="col">Survey Name</th>
                   <th scope="col">Acronym</th>
-                  <th scope="col">Responsible</th>
-                  <th scope="col" colspan="3" width="5%"></th>
+                  <th scope="col">Responsible Name</th>
+                  <th scope="col">Responsible Division</th>
+                  <th scope="col" colspan="3" width="3%"></th>
                 </tr>
               </thead>
               <tbody>
@@ -32,10 +32,10 @@
                   v-for="statisticalProcess in statisticalProcesses"
                   :key="statisticalProcess.id"
                 >
-                  <th scope="row">{{ statisticalProcess.id }}</th>
                   <td>{{ statisticalProcess.name }}</td>
                   <td>{{ statisticalProcess.acronym }}</td>
-                  <td>{{ statisticalProcess.respFullName }}</td>
+                  <td>{{ statisticalProcess.responsibleName }}</td>
+                  <td>{{ statisticalProcess.responsibleDivision }}</td>
                   <td>
                     <router-link
                       tag="a"
@@ -87,7 +87,7 @@ export default {
     ...mapGetters(["statisticalProcesses"])
   },
   created() {
-    this.$store.dispatch("storeStatisticalProcesses");
+    this.$store.dispatch("getStatisticalProcesses");
   }
 };
 </script>

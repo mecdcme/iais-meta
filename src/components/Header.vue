@@ -37,7 +37,6 @@ import HeaderBackBtn from "./HeaderBackBtn";
 import BreadCrumb from "./BreadCrumb";
 
 export default {
-  name: "Header",
   components: {
     "app-header-dropdown-account": HeaderDropdownAccnt,
     "app-header-back-btn": HeaderBackBtn,

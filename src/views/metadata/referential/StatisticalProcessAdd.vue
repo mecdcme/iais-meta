@@ -1,6 +1,6 @@
 <template>
   <div class="row">
-    <div class="col-sm-6 col-md-6">
+    <div class="col-sm-12 col-md-6">
       <div class="card ">
         <header class="card-header">
           <strong>Statistical process</strong>
@@ -12,9 +12,9 @@
               id="name"
               type="text"
               class="form-control"
-              :class="{ invalid: $v.name.$error }"
+              :class="{ 'is-invalid': $v.name.$error }"
               placeholder="Survey name"
-              v-model="name"
+              v-model.trim="name"
             />
             <span class="help-block" :class="{ show: $v.name.$error }">
               Please enter survey name.
@@ -26,26 +26,46 @@
               id="acronym"
               type="text"
               class="form-control"
-              :class="{ invalid: $v.acronym.$error }"
+              :class="{ 'is-invalid': $v.acronym.$error }"
               placeholder="Survey acronym"
-              v-model="acronym"
+              v-model.trim="acronym"
             />
             <span class="help-block" :class="{ show: $v.acronym.$error }">
               Please enter an acronym.
             </span>
           </div>
           <div class="form-group">
-            <label for="responsible">Responsible</label>
+            <label for="responsible">Responsible name</label>
             <input
-              id="responsible"
+              id="responsibleName"
               type="text"
               class="form-control"
-              :class="{ invalid: $v.responsible.$error }"
+              :class="{ 'is-invalid': $v.responsibleName.$error }"
               placeholder="Survey responsible"
-              v-model="responsible"
+              v-model.trim="responsibleName"
             />
-            <span class="help-block" :class="{ show: $v.responsible.$error }">
-              Please enter a responsible.
+            <span
+              class="help-block"
+              :class="{ show: $v.responsibleName.$error }"
+            >
+              Please enter responsible name.
+            </span>
+          </div>
+          <div class="form-group">
+            <label for="responsible">Responsible division</label>
+            <input
+              id="responsibleDivision"
+              type="text"
+              class="form-control"
+              :class="{ 'is-invalid': $v.responsibleDivision.$error }"
+              placeholder="Responsible division"
+              v-model.trim="responsibleDivision"
+            />
+            <span
+              class="help-block"
+              :class="{ show: $v.responsibleDivision.$error }"
+            >
+              Please enter responsible division.
             </span>
           </div>
         </div>
@@ -56,6 +76,7 @@
             size="sm"
             style="margin-right:0.3rem"
             @click.prevent="handleSubmit()"
+            :disabled="disabled"
             >Submit</CButton
           >
           <CButton
@@ -63,6 +84,7 @@
             shape="square"
             size="sm"
             @click.prevent="handleReset()"
+            :disabled="disabled"
             >Reset</CButton
           >
         </div>
@@ -74,12 +96,13 @@
 import { required } from "vuelidate/lib/validators";
 
 export default {
-  name: "StatisticalProcessAdd",
   data() {
     return {
       name: "",
       acronym: "",
-      responsible: ""
+      responsibleName: "",
+      responsibleDivision: "",
+      disabled: false
     };
   },
   validations: {
@@ -89,7 +112,10 @@ export default {
     acronym: {
       required
     },
-    responsible: {
+    responsibleName: {
+      required
+    },
+    responsibleDivision: {
       required
     }
   },
@@ -97,19 +123,23 @@ export default {
     handleSubmit() {
       this.$v.$touch(); //validate form data
       if (!this.$v.$invalid) {
+        this.disabled = true; //disable buttons
         const formData = {
           name: this.name,
           acronym: this.acronym,
-          responsible: this.responsible
+          responsibleName: this.responsibleName,
+          responsibleDivision: this.responsibleDivision
         };
-        //this.$store.dispatch("register", formData);
+        this.$store.dispatch("saveStatisticalProcess", formData);
         console.log(formData);
       }
     },
     handleReset() {
       this.name = "";
       this.acronym = "";
-      this.responsible = "";
+      this.responsibleName = "";
+      this.responsibleDivision = "";
+      this.$v.$reset();
     }
   }
 };

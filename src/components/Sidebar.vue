@@ -19,7 +19,6 @@ import { mapGetters } from "vuex";
 import nav from "./_nav";
 
 export default {
-  name: "Sidebar",
   nav,
   computed: {
     ...mapGetters({

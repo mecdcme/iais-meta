@@ -26,7 +26,6 @@
 
 <script>
 export default {
-  name: "HeaderDropdownAccnt",
   methods: {
     logout() {
       this.$store.dispatch("logout");

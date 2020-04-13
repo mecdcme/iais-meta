@@ -9,9 +9,3 @@
     </div>
   </CFooter>
 </template>
-
-<script>
-export default {
-  name: "Footer"
-};
-</script>

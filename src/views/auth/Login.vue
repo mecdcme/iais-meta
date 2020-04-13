@@ -28,7 +28,7 @@
                       type="text"
                       class="form-control"
                       placeholder="Email"
-                      v-model="email"
+                      v-model.trim="email"
                     />
                   </div>
                 </div>
@@ -96,7 +96,7 @@ export default {
   methods: {
     handleSubmit() {
       const formData = {
-        email: this.email.trim(),
+        email: this.email,
         password: this.password
       };
       this.$store.dispatch("login", formData);
