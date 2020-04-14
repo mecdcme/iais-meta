@@ -25,6 +25,13 @@ export default {
         destinationRoute: to
       });
     }
+  },
+  created() {
+    //page reload
+    this.$store.dispatch("setBackButton", {
+      currentRoute: this.$route,
+      destinationRoute: this.$route
+    });
   }
 };
 </script>

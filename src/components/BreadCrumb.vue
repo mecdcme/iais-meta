@@ -35,6 +35,7 @@ export default {
     }
   },
   created() {
+    //page reload
     this.$store.dispatch("createBreadcrumbs", this.$route);
   }
 };
