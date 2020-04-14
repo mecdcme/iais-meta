@@ -20,8 +20,8 @@ export default {
 </script>
 
 <style scoped>
-.toast {
-  width: 40%;
+.toaster .toast {
+  width: 60%;
 }
 
 .toast-info {

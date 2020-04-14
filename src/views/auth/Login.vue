@@ -2,7 +2,7 @@
   <div class="d-flex align-items-center min-vh-100">
     <CContainer fluid>
       <CRow class="justify-content-center">
-        <CCol md="6" lg="4">
+        <CCol sm="6" md="6" lg="4">
           <CCard class="mx-4 mb-0"
             ><CCardHeader align="center">
               <img src="img/logo.png" class="logo" />

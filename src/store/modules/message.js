@@ -9,7 +9,7 @@ const mutations = {
     state.message = message;
   },
   ERROR(state, message) {
-    state.type = "toast-danger";
+    state.type = "toast-error";
     state.message = message;
   },
   CLEAR(state) {

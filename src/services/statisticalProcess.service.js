@@ -7,89 +7,93 @@ export const statisticalProcessService = {
 };
 
 function getAll(token) {
-  return axios.get("/statisticalProcesses.json" + "?auth=" + token).then(
-    response => {
-      var statisticalProcesses = [];
-      for (const [key, value] of Object.entries(response.data)) {
-        //console.log(key, value);
-        statisticalProcesses.push({
-          id: key,
-          name: value.name,
-          acronym: value.acronym,
-          responsibleName: value.responsibleName,
-          responsibleDivision: value.responsibleDivision
-        });
-      }
-      //console.log(statisticalProcesses);
-      return statisticalProcesses;
-    },
-    error => {
-      //console.log(error.response.data.error.code);
-      //console.log(error.response.data.error.message);
-      const err = {
-        code: error.response.data.error.code,
-        message: error.response.data.error.message
-      };
-      return Promise.reject(err);
-    }
-  );
-}
-
-function getById(token, id) {
-  return axios
-    .get(
-      "/statisticalProcesses.json" +
-        "?auth=" +
-        token +
-        '&orderBy="$key"' +
-        '&equalTo="' +
-        id +
-        '"'
-    )
-    .then(
+  return new Promise((resolve, reject) => {
+    axios.get("/statisticalProcesses.json" + "?auth=" + token).then(
       response => {
-        var statisticalProcess = null;
+        var statisticalProcesses = [];
         for (const [key, value] of Object.entries(response.data)) {
           //console.log(key, value);
-          statisticalProcess = {
+          statisticalProcesses.push({
             id: key,
             name: value.name,
             acronym: value.acronym,
             responsibleName: value.responsibleName,
             responsibleDivision: value.responsibleDivision
-          };
+          });
         }
-        console.log(statisticalProcess);
-        return statisticalProcess;
+        //console.log(statisticalProcesses);
+        resolve(statisticalProcesses);
       },
       error => {
-        //console.log(error.response.data.error.code);
-        //console.log(error.response.data.error.message);
+        console.log(error.response.status);
+        console.log(error.response.data.error);
         const err = {
-          code: error.response.data.error.code,
-          message: error.response.data.error.message
+          status: error.response.status,
+          message: error.response.data.error
         };
-        return Promise.reject(err);
+        reject(err);
       }
     );
+  });
+}
+
+function getById(token, id) {
+  return new Promise((resolve, reject) => {
+    axios
+      .get(
+        "/statisticalProcesses.json" +
+          "?auth=" +
+          token +
+          '&orderBy="$key"' +
+          '&equalTo="' +
+          id +
+          '"'
+      )
+      .then(
+        response => {
+          var statisticalProcess = null;
+          for (const [key, value] of Object.entries(response.data)) {
+            //console.log(key, value);
+            statisticalProcess = {
+              id: key,
+              name: value.name,
+              acronym: value.acronym,
+              responsibleName: value.responsibleName,
+              responsibleDivision: value.responsibleDivision
+            };
+          }
+          console.log(statisticalProcess);
+          resolve(statisticalProcess);
+        },
+        error => {
+          console.log(error.response.status);
+          console.log(error.response.data.error);
+          const err = {
+            status: error.response.status,
+            message: error.response.data.error
+          };
+          reject(err);
+        }
+      );
+  });
 }
 
 function save(token, formData) {
-  return axios
-    .post("/statisticalProcesses.json" + "?auth=" + token, formData)
-    .then(
+  return new Promise((resolve, reject) => {
+    axios.post("/statisticalProcesses.json" + "?auth=" + token, formData).then(
       response => {
         //console.log(response.data);
-        return response.data;
+        resolve(response.data);
       },
       error => {
-        //console.log(error.response.data.error.code);
-        //console.log(error.response.data.error.message);
+        console.log(error.response.status);
+        console.log(error.response.data.error);
         const err = {
-          code: error.response.data.error.code,
-          message: error.response.data.error.message
+          status: error.response.status,
+          message: error.response.data.error
         };
-        return Promise.reject(err);
+        reject(err);
       }
     );
+  });
 }

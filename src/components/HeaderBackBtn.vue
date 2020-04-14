@@ -1,28 +1,29 @@
 <template>
   <div class="c-subheader-nav d-md-down-none mfe-2">
-    <router-link tag="a" :to="back" class="c-subheader-nav-link" v-if="show">
+    <router-link
+      tag="a"
+      :to="backButton.url"
+      class="c-subheader-nav-link"
+      v-if="backButton.show"
+    >
       <CIcon name="cilXCircle"></CIcon><span class="header-link">Close</span>
     </router-link>
   </div>
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
-  data() {
-    return {
-      show: false,
-      back: "/"
-    };
+  computed: {
+    ...mapGetters(["backButton"])
   },
   watch: {
     $route(to) {
-      this.show = this.$router.currentRoute.name != "Metadata";
-      var pathArray = to.path.split("/");
-      var parentPath = "";
-      for (let i = 0; i < pathArray.length - 1; i++) {
-        parentPath += pathArray[i] + "/";
-      }
-      this.back = parentPath == "/" ? "/" : parentPath.slice(0, -1);
+      this.$store.dispatch("setBackButton", {
+        currentRoute: this.$route,
+        destinationRoute: to
+      });
     }
   }
 };

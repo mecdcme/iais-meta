@@ -3,12 +3,12 @@
     <CToggler
       in-header
       class="ml-3 d-lg-none"
-      @click="$store.commit('toggleSidebarMobile')"
+      @click="$store.dispatch('toggleSidebarMobile')"
     />
     <CToggler
       in-header
       class="ml-3 d-md-down-none"
-      @click="$store.commit('toggleSidebarDesktop')"
+      @click="$store.dispatch('toggleSidebarDesktop')"
     />
     <CHeaderBrand class="mx-auto d-lg-none" to="/">
       <img src="/img/logo.png" height="40" />

@@ -18,16 +18,11 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
-  data() {
-    return {
-      breadcrumbs: [
-        {
-          path: "metadata",
-          to: "/metadata"
-        }
-      ]
-    };
+  computed: {
+    ...mapGetters(["breadcrumbs"])
   },
   methods: {
     upperCaseFirst(str) {
@@ -36,19 +31,11 @@ export default {
   },
   watch: {
     $route() {
-      let pathArray = this.$route.path.split("/");
-      pathArray.shift();
-      let breadcrumbs = pathArray.reduce((breadcrumbArray, path, idx) => {
-        breadcrumbArray.push({
-          path: path,
-          to: breadcrumbArray[idx - 1]
-            ? "/" + breadcrumbArray[idx - 1].path + "/" + path
-            : "/" + path
-        });
-        return breadcrumbArray;
-      }, []);
-      this.breadcrumbs = breadcrumbs;
+      this.$store.dispatch("createBreadcrumbs", this.$route);
     }
+  },
+  created() {
+    this.$store.dispatch("createBreadcrumbs", this.$route);
   }
 };
 </script>

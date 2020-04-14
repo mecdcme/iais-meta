@@ -16,25 +16,25 @@ const mutations = {
 };
 
 const actions = {
-  getStatisticalProcesses({ commit, getters }) {
+  getStatisticalProcesses({ commit, getters, dispatch }) {
     statisticalProcessService.getAll(getters.token).then(
       data => {
-        const statisticalProcesses = data;
-        commit("SET_STATISTICAL_PROCESSES", statisticalProcesses);
+        commit("SET_STATISTICAL_PROCESSES", data);
         commit("SET_STATISTICAL_PROCESS", null); //clear statistical process
       },
       error => {
+        dispatch("error", "[" + error.status + "] " + error.message);
         console.log(error);
       }
     );
   },
-  getStatisticalProcessById({ commit, getters }, id) {
+  getStatisticalProcessById({ commit, getters, dispatch }, id) {
     statisticalProcessService.getById(getters.token, id).then(
       data => {
-        const statisticalProcess = data;
-        commit("SET_STATISTICAL_PROCESS", statisticalProcess);
+        commit("SET_STATISTICAL_PROCESS", data);
       },
       error => {
+        dispatch("error", "[" + error.status + "] " + error.message);
         console.log(error);
       }
     );
@@ -42,11 +42,12 @@ const actions = {
   saveStatisticalProcess({ getters, dispatch }, formData) {
     statisticalProcessService.getById(getters.token, formData).then(
       data => {
-        console.log(data);
+        //console.log(data);
         dispatch("success", data.name + " saved!");
         router.push("/metadata/referential");
       },
       error => {
+        dispatch("error", "[" + error.status + "] " + error.message);
         console.log(error);
       }
     );
