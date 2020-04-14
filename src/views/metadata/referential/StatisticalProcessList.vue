@@ -51,7 +51,7 @@
                     <router-link
                       tag="a"
                       :to="{
-                        name: 'StatisticalProcessEdit',
+                        name: 'StatisticalProcessView',
                         params: { id: statisticalProcess.id }
                       }"
                     >
@@ -59,15 +59,12 @@
                     </router-link>
                   </td>
                   <td>
-                    <router-link
-                      tag="a"
-                      :to="{
-                        name: 'StatisticalProcessEdit',
-                        params: { id: statisticalProcess.id }
-                      }"
+                    <a
+                      href="#"
+                      @click.prevent="deleteProcess(statisticalProcess)"
                     >
                       <CIcon name="cilTrash"></CIcon>
-                    </router-link>
+                    </a>
                   </td>
                 </tr>
               </tbody>
@@ -85,6 +82,11 @@ import { mapGetters } from "vuex";
 export default {
   computed: {
     ...mapGetters(["statisticalProcesses"])
+  },
+  methods: {
+    deleteProcess(statisticalProcess) {
+      alert("Deleting " + statisticalProcess.name);
+    }
   },
   created() {
     this.$store.dispatch("getStatisticalProcesses");
