@@ -77,7 +77,7 @@
             style="margin-right:0.3rem"
             @click.prevent="handleSubmit()"
             :disabled="disabled"
-            >Submit</CButton
+            >Save</CButton
           >
           <CButton
             color="danger"

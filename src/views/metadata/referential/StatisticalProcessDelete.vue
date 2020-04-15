@@ -52,9 +52,9 @@
             color="primary"
             shape="square"
             size="sm"
-            @click.prevent="handleBack()"
+            @click.prevent="handleDelete()"
             :disabled="disabled"
-            >Back</CButton
+            >Delete</CButton
           >
         </div>
       </div>
@@ -74,9 +74,9 @@ export default {
     ...mapGetters(["statisticalProcess"])
   },
   methods: {
-    handleBack() {
+    handleDelete() {
       this.disabled = true; //disable button
-      this.$router.push("/metadata/referential");
+      this.$store.dispatch("deleteStatisticalProcess", this.statisticalProcess);
     }
   },
   created() {

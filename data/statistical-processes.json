@@ -1,0 +1,22 @@
+{
+  "statisticalProcesses" : {
+	  "-M4mXd3yTAfkxaxeQymc" : {
+		"name": "Labour force survey",
+		"acronym": "LFS",
+		"responsibleName": "Han Solo",
+		"responsibleDivision": "Cadet"
+	  },
+	  "-M4mmwpBM6XcNZjsiGBy" : {
+		"name": "Time use survey",
+		"acronym": "TUS",
+		"responsibleName": "Chewbacca",
+		"responsibleDivision": "Wookiee"
+	  },
+	  "-M4mn_I8eZEc4d6mAFt7" : {
+		"name": "Population census",
+		"acronym": "CENS",
+		"responsibleName": "Princess Leia",
+		"responsibleDivision": "Princess"
+	  }
+	}
+}

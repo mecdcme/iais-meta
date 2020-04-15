@@ -40,10 +40,36 @@ const actions = {
     );
   },
   saveStatisticalProcess({ getters, dispatch }, formData) {
-    statisticalProcessService.getById(getters.token, formData).then(
+    statisticalProcessService.save(getters.token, formData).then(
       data => {
-        //console.log(data);
-        dispatch("success", data.name + " saved!");
+        console.log(data);
+        dispatch("success", "Statistical process saved!");
+        router.push("/metadata/referential");
+      },
+      error => {
+        dispatch("error", "[" + error.status + "] " + error.message);
+        console.log(error);
+      }
+    );
+  },
+  deleteStatisticalProcess({ getters, dispatch }, formData) {
+    statisticalProcessService.delete(getters.token, formData).then(
+      data => {
+        console.log(data);
+        dispatch("success", "Statistical process deleted!");
+        router.push("/metadata/referential");
+      },
+      error => {
+        dispatch("error", "[" + error.status + "] " + error.message);
+        console.log(error);
+      }
+    );
+  },
+  updateStatisticalProcess({ getters, dispatch }, formData) {
+    statisticalProcessService.update(getters.token, formData).then(
+      data => {
+        console.log(data);
+        dispatch("success", "Statistical process updated!");
         router.push("/metadata/referential");
       },
       error => {

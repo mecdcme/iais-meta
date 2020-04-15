@@ -59,12 +59,15 @@
                     </router-link>
                   </td>
                   <td>
-                    <a
-                      href="#"
-                      @click.prevent="deleteProcess(statisticalProcess)"
+                    <router-link
+                      tag="a"
+                      :to="{
+                        name: 'StatisticalProcessDelete',
+                        params: { id: statisticalProcess.id }
+                      }"
                     >
                       <CIcon name="cilTrash"></CIcon>
-                    </a>
+                    </router-link>
                   </td>
                 </tr>
               </tbody>
@@ -82,11 +85,6 @@ import { mapGetters } from "vuex";
 export default {
   computed: {
     ...mapGetters(["statisticalProcesses"])
-  },
-  methods: {
-    deleteProcess(statisticalProcess) {
-      alert("Deleting " + statisticalProcess.name);
-    }
   },
   created() {
     this.$store.dispatch("getStatisticalProcesses");
